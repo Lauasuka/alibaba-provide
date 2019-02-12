@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: alibaba-nacos-provide
+  datasource:
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #新的驱动需要在URL中添加时区设置，否则会报错
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    hikari:
+      minimum-idle: 5
+      idle-timeout: 180000
+      max-lifetime: 1800000
+      maximum-pool-size: 10
+      auto-commit: true
+      pool-name: provide-service-pool
+      connection-test-query: SELECT 1
+      connection-timeout: 30000
+
+dubbo:
+  application:
+    name: alibaba-nacos-provide
+    version: 1.0.0
+    #关闭qos service，如果有多个提供者又没有设置相关的设置的话，会报端口被占用异常，但是不影响使用
+    qos-enable: false
+    qos-accept-foreign-ip: false
+  protocol:
+    name: dubbo
+    port: 20898
+  registry:
+    address: nacos://127.0.0.1:8848
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      db-type: mariadb
+      id-type: id_worker
+  mapper-locations: classpath*:mapper/*.xml
