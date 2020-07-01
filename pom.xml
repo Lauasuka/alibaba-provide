@@ -34,7 +34,7 @@
         <nacos.version>0.8.0</nacos.version>
         <netty.version>4.1.42</netty.version>
         <dubbo.spring.version>0.2.0</dubbo.spring.version>
-        <mysql.version>8.0.13</mysql.version>
+        <mysql.version>8.0.16</mysql.version>
     </properties>
 
     <dependencies>
